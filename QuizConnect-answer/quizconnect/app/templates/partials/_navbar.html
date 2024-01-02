@@ -1,0 +1,33 @@
+{% load static %}
+<header class="p-3 bg-dark ">
+  <div class="container-xl ">
+    <div class="d-flex align-items-center">
+      <a href="{% url 'home' user_id=user.id %}">
+        <img src="{% static 'img/header/question.png' %}" width="50">
+      </a>
+
+      <div class="col-8 col-lg-6 me-lg-auto mb-md-0">
+        <ul class="nav px-2 gap-2">
+          <li><a href="{% url 'home' user_id=user.id %}" class="nav-link px-2 text-white fw-bold">Quiz Connect | {{ user.first_name }}</a></li>
+          <li><a href="{% url 'addQuestion' user_id=user.id %}" class="nav-link px-2 text-white">Add Question</a></li>
+          <li><a href="{% url 'lessons' user_id=user.id %}" class="nav-link px-2 text-white">Lessons</a></li>
+          <li><a href="{% url 'profile' user_id=user.id %}" class="nav-link px-2 text-white">Your Profile</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-5">
+        <div class="d-flex justify-content-between">
+          <form class="col-lg-8" action="{% url 'search' user_id=user.id %}" method="post">
+            {% csrf_token %}
+            <div class="d-flex gap-2">
+              <input type="search" class="form-control form-control-dark" name="searchInput" placeholder="Search...">
+              <button type="submit" class="glow-on-hover custom-btn">Search</button>
+            </div>  
+          </form>
+          <a href="{% url 'login' %}"><button type="button" class="glow-on-hover custom-btn">Logout</button></a>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</header>
